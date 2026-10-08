@@ -1,0 +1,86 @@
+{
+  "info": {
+    "name": "AcxiomCRM Basic API",
+    "_postman_id": "acxiomcrm-demo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key":"baseUrl","value":"http://localhost:8080"},
+    {"key":"token","value":""}
+  ],
+  "item": [
+    {
+      "name":"Login",
+      "request":{
+        "method":"POST",
+        "header":[{"key":"Content-Type","value":"application/json"}],
+        "body":{"mode":"raw","raw":"{\"username\":\"admin\",\"password\":\"Admin@123\"}"},
+        "url":{"raw":"{{baseUrl}}/api/auth/login","host":["{{baseUrl}}"],"path":["api","auth","login"]}
+      }
+    },
+    {
+      "name":"Health",
+      "request":{"method":"GET","url":{"raw":"{{baseUrl}}/api/health","host":["{{baseUrl}}"],"path":["api","health"]}}
+    },
+    {
+      "name":"Dashboard",
+      "request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/api/dashboard","host":["{{baseUrl}}"],"path":["api","dashboard"]}}
+    },
+    {
+      "name":"Create Customer",
+      "request":{
+        "method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body":{"mode":"raw","raw":"{\"name\":\"ABC Traders\",\"email\":\"abc@example.com\",\"phone\":\"9876543210\",\"companyName\":\"ABC Traders\",\"address\":\"Main Road\",\"city\":\"Rajam\",\"state\":\"Andhra Pradesh\",\"status\":\"ACTIVE\"}"},
+        "url":{"raw":"{{baseUrl}}/api/customers","host":["{{baseUrl}}"],"path":["api","customers"]}
+      }
+    },
+    {
+      "name":"List Customers",
+      "request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/api/customers","host":["{{baseUrl}}"],"path":["api","customers"]}}
+    },
+    {
+      "name":"Create Lead",
+      "request":{
+        "method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body":{"mode":"raw","raw":"{\"name\":\"Ravi Kumar\",\"email\":\"ravi@example.com\",\"phone\":\"9876543211\",\"companyName\":\"Ravi Enterprises\",\"source\":\"Website\",\"status\":\"NEW\",\"priority\":\"HIGH\",\"expectedValue\":250000,\"assignedTo\":\"admin\"}"},
+        "url":{"raw":"{{baseUrl}}/api/leads","host":["{{baseUrl}}"],"path":["api","leads"]}
+      }
+    },
+    {
+      "name":"List Leads",
+      "request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/api/leads","host":["{{baseUrl}}"],"path":["api","leads"]}}
+    },
+    {
+      "name":"Create Opportunity",
+      "request":{
+        "method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body":{"mode":"raw","raw":"{\"name\":\"ERP Implementation\",\"customerId\":1,\"amount\":500000,\"probability\":60,\"expectedCloseDate\":\"2026-12-30\",\"stage\":\"PROPOSAL\",\"status\":\"OPEN\",\"assignedTo\":\"admin\",\"notes\":\"Demo opportunity\"}"},
+        "url":{"raw":"{{baseUrl}}/api/opportunities","host":["{{baseUrl}}"],"path":["api","opportunities"]}
+      }
+    },
+    {
+      "name":"Invalid Opportunity - Amount 0",
+      "request":{
+        "method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body":{"mode":"raw","raw":"{\"name\":\"Invalid\",\"amount\":0,\"probability\":50,\"expectedCloseDate\":\"2026-12-30\",\"stage\":\"PROPOSAL\",\"status\":\"OPEN\"}"},
+        "url":{"raw":"{{baseUrl}}/api/opportunities","host":["{{baseUrl}}"],"path":["api","opportunities"]}
+      }
+    },
+    {
+      "name":"Create Follow-Up",
+      "request":{
+        "method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body":{"mode":"raw","raw":"{\"customerId\":1,\"followUpDate\":\"2026-12-31\",\"followUpType\":\"CALL\",\"remarks\":\"Discuss proposal\",\"status\":\"PLANNED\",\"assignedTo\":\"admin\"}"},
+        "url":{"raw":"{{baseUrl}}/api/followups","host":["{{baseUrl}}"],"path":["api","followups"]}
+      }
+    },
+    {
+      "name":"Pipeline Report",
+      "request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/api/reports/pipeline","host":["{{baseUrl}}"],"path":["api","reports","pipeline"]}}
+    },
+    {
+      "name":"Audit Log",
+      "request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/api/audit","host":["{{baseUrl}}"],"path":["api","audit"]}}
+    }
+  ]
+}
