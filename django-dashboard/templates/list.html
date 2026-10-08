@@ -12,10 +12,10 @@
 {% for x in items %}
 <tr>
 <td>{{ x.id }}</td>
-<td>{{ x.name|default:x.followUpType|default:"-" }}</td>
-<td>{{ x.email|default:x.followUpDate|default:"-" }}</td>
-<td>{{ x.status|default:x.stage|default:"-" }}</td>
-<td><small>{{ x.companyName|default:x.remarks|default:x.amount|default:"-" }}</small></td>
+<td>{{ x.display_name|default:"-" }}</td>
+<td>{{ x.display_email_or_date|default:"-" }}</td>
+<td>{{ x.display_status|default:"-" }}</td>
+<td><small>{{ x.display_detail|default:"-" }}</small></td>
 </tr>
 {% empty %}<tr><td colspan="5">No records</td></tr>{% endfor %}
 </tbody></table>
